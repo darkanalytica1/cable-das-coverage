@@ -25,7 +25,7 @@ coverage(Segment(1375, repeaters=20, reach_km=171, dual_ended=True))["fraction"]
 
 ## Svalbard example (results)
 
-Segment Breivika to Longyearbyen, 1,375 km with 20 repeaters. **Assumption:** repeaters evenly spaced (about 65.5 km); the real span plan is not public.
+Segment Breivika to Longyearbyen, 1,375 km with 20 repeaters. **Assumption:** repeaters evenly spaced (about 65.5 km); the real span plan is not public, and the operator has described the spacing as roughly 100 km, so both cases are shown.
 
 | Case | Heard | Longest deaf stretch |
 |---|---|---|
@@ -33,8 +33,36 @@ Segment Breivika to Longyearbyen, 1,375 km with 20 repeaters. **Assumption:** re
 | Interrogators at both landings | 130.9 km (9.5 %) | 1,244 km |
 | Both landings, 200.6 km reach (enhanced-scattering fibre) | 130.9 km (9.5 %) | 1,244 km |
 | Both landings, multi-span repeaters (HLLB) | 1,375 km (100 %) | 0 km |
+| Both landings, first spans of 100 km (operator's "approximately 100 km") | 200 km (14.5 %) | 1,175 km |
 
 Depth along the approximate public route (GEBCO 2020 via OpenTopoData, positions scaled to 1,375 km): of the stretch deeper than 1,000 m, about 94 % lies in the deaf part.
+
+## Svalbard: who crosses the route (open AIS)
+
+`ais/` counts how often vessel tracks cross the approximate Svalbard route, from the Norwegian Coastal Administration's open AIS (Kystdatahuset API, NLOD licence). The 2022 fault was estimated by the operator at 130 to 230 km from Longyearbyen, beyond the first repeater under either spacing.
+
+```bash
+python -m ais.summary                     # offline, from the query outputs in data/ais/
+python ais/crossings.py jan2022           # re-query 25.12.2021-07.01.2022 (network, slow)
+python ais/crossings.py win 2024          # same window in a later winter
+python ais/crossings.py y2025 0 4         # 2025 fortnightly baseline, worker 0 of 4
+```
+
+Same 13 days (25 December to 7 January 03:10 UTC), route km 80 to 280:
+
+| Winter | Crossings | Russian-flagged | In fault zone (km 130-230) | Vessels |
+|---|---|---|---|---|
+| 2021/22 (fault) | 281 | 231 | 96 | 33 |
+| 2022/23 | 273 | 255 | 61 | 15 |
+| 2023/24 | 62 | 35 | 12 | 5 |
+| 2024/25 | 73 | 63 | 8 | 6 |
+| 2025/26 | 6 | 0 | 2 | 2 |
+
+2025 baseline (26 days, one every 14 days, full route): 758 crossings by 296 vessels, 65 Russian-flagged; 601 within one 65.5 km span of either landing.
+
+Method: per UTC day and route piece, positions at 0.3 kn or more in a box around the piece; consecutive fixes under 30 minutes apart joined and tested for intersection with the route line. Flag from the MMSI country code. Counts are lower bounds: AIS excludes fishing vessels under 15 m and anything not transmitting, and gaps over 30 minutes are not bridged. The route is approximate and the real system is two cables 5 to 10 km apart, so these are crossings of a corridor, not of a cable. **A crossing is not evidence of damage.** The fall after 2022/23 is observed, not explained.
+
+`data/incidents.csv` lists the Arctic and Baltic subsea incidents used for context, with sources.
 
 ## Limitations
 
@@ -51,5 +79,8 @@ Depth along the approximate public route (GEBCO 2020 via OpenTopoData, positions
 - Zhu, B. et al. (2025). Integration of distributed acoustic sensing and unrepeatered transmission for undersea cable monitoring by ESF. SubOptic 2025.
 - Svalbard Undersea Cable System (segment lengths, repeaters), Wikipedia.
 - GEBCO Compilation Group (2020), via api.opentopodata.org.
+- Norwegian Coastal Administration, open AIS data (NLOD), kystdatahuset.no.
+- Schia, N. N., Gjesvik, L., Rødningen, I. F. (2023). The subsea cable cut at Svalbard January 2022. NUPI Policy Brief 1/2023.
+- Space Norway (2022). Redundancy on primary telecom connection to Svalbard restored.
 
 MIT licence.

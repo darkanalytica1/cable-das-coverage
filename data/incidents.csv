@@ -1,0 +1,9 @@
+date,region,infrastructure,vessel,flag,mechanism,outcome,source
+2021-04-03,Arctic/Norway,LoVe ocean observatory cable (IMR/Norwegian military use),unknown,unknown,"4.2 km cable pulled; ~3 km found up to 11 km out of position",no attribution published,"IMR 2021-11; newsinenglish 2021-11-07"
+2022-01-07,Arctic/Svalbard,Svalbard Undersea Cable System (one of two cables),none identified; Russian trawler reported >140 crossings (NRK),Russia (vessel reported by NRK),"shunt fault; repeaters lost power; 'pinching damage' in police report",investigation dropped (lack of evidence / legislation); repaired June 2023,"Space Norway 2022-01-18; NRK 2024-05-26"
+2023-10-08,Baltic,Balticconnector pipeline + telecom cables (FI–EE),NewNew Polar Bear,Hong Kong,anchor drag,flag state (China) acknowledged the ship damaged them,"Wikipedia list; Atlantic Council"
+2024-11-18,Baltic,BCS East-West Interlink (SE–LT) + C-Lion1 (FI–DE),Yi Peng 3,China,anchor drag,Swedish inquiry: no conclusive evidence of intent,"Wikipedia list; CBS"
+2024-12-25,Baltic,Estlink 2 power cable + 4 telecom cables (FI–EE),Eagle S,Cook Islands,"anchor drag, ~90 km","Helsinki District Court dismissed 2025-10-03 (jurisdiction); Court of Appeal reversed Aug 2026","EJIL:Talk; The Record"
+2025-01-26,Baltic,SE–LV fibre cable,Vezhen,Malta,anchor drag,deemed an accident,"Wikipedia list"
+2025-12-31,Baltic,Elisa data cable (FI–EE),Fitburg,unknown,"anchor drag, tens of km",investigation ongoing,"Wikipedia list"
+2026-spring,Arctic/Svalbard,Two Svalbard–mainland cables (Bear Gap),GUGI deep-sea submersibles,Russia,rehearsal of a covert cable-disabling capability,"tracked and confronted by UK, Norway, US; disclosed 2026-09-10","Reuters via Defense News 2026-09-10"
